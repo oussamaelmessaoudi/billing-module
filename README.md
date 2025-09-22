@@ -53,6 +53,23 @@ Each client can recieve invoices for services. The API is designed for easy inte
 | Architecture| MVC               |
 
 
+## Project Structure
+
+```
+src/
+ ├── main/java/com/example/billingmodule/
+ │   ├── controller/
+ │   ├── service/
+ │   ├── entity/
+ │   ├── dto/
+ │   ├── mapper/
+ │   ├── exception/
+ │   ├── repository/
+ │   └── config/
+ └── resources/
+ └── test/java/com/example/billingmodule/
+```
+
 ## Author
 Oussama ELMESSAOUDI
 
