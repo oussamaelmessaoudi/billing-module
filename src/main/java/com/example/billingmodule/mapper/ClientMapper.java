@@ -21,6 +21,7 @@ public class ClientMapper {
                 .invoices(client.getInvoices().stream()
                         .map(InvoiceMapper::toDTO)
                         .toList())
+                .createdAt(client.getCreatedAt())
                 .build();
     }
 
