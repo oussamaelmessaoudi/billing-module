@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +26,8 @@ public class Invoice {
     @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "invoice")
-    private List<InvoiceLine> lines;
+    @OneToMany(mappedBy = "invoice",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<InvoiceLine> lines = new ArrayList<>();
 
     @Column(nullable = false, name = "total_ht")
     private BigDecimal totalHT;
