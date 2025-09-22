@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
-    Optional<Invoice> findById(Long id);
     List<Invoice> findByClient(Client client);
     List<Invoice> findByDate(LocalDate date);
 }

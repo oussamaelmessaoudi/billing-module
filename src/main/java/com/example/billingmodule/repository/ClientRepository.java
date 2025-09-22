@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client,Long> {
-    Optional<Client> findById(Long id);
     Optional<Client> findBySiret(String siret);
     boolean existsBySiret(String siret);
     boolean existsByEmail(String email);
