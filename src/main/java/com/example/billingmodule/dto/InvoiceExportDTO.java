@@ -1,5 +1,8 @@
 package com.example.billingmodule.dto;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,8 +16,10 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InvoiceExportDTO {
     private Long invoiceId;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String clientName;
     private String clientSiret;
