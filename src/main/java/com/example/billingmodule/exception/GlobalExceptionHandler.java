@@ -28,4 +28,19 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Siret Already Exists !");
     }
+
+    @ExceptionHandler(InvoiceNotFoundException.class)
+    public ResponseEntity<String> handleInvoiceNotFound(InvoiceNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invoice not found !");
+    }
+
+    @ExceptionHandler(InvoiceEmptyException.class)
+    public ResponseEntity<String> handleInvoiceEmpty(InvoiceEmptyException ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("An invoice must contains at least one line");
+    }
+
+    @ExceptionHandler(InvoiceTotalHTException.class)
+    public ResponseEntity<String> handleInvoiceTotalHT(InvoiceTotalHTException ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Total HT must be greater than 0");
+    }
 }
