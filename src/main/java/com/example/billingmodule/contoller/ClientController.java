@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class ClientController {
 
     private final ClientService clientService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Create new Client")
     public ResponseEntity<String> createClient(@Valid @RequestBody ClientDTO clientDTO){
@@ -41,11 +43,20 @@ public class ClientController {
         return ResponseEntity.ok(clientService.getAllClients());
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete client by ID")
     public ResponseEntity<String> deleteClientById(@Valid @PathVariable Long id){
         clientService.deleteClient(id);
         return ResponseEntity.ok("Client has been deleted successfully !");
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
+    @Operation(summary = "Update client by ID")
+    public ResponseEntity<String> updateClient(@Valid @PathVariable Long id,@RequestBody ClientDTO clientDTO){
+        clientService.updateClient(id,clientDTO);
+        return ResponseEntity.ok("Client has been updated successfully !");
     }
 
 }
